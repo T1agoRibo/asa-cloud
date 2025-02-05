@@ -1,0 +1,5 @@
+FROM jorgedlcruz/zimbra
+
+EXPOSE 25
+EXPOSE 993
+EXPOSE 110

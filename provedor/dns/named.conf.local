@@ -1,0 +1,36 @@
+//
+// Do any local configuration here
+//
+
+zone "pirangi.com.br" {
+    type master;
+    file "/etc/bind/db.pirangi.com.br";
+    allow-transfer{
+        127.0.0.1;
+    };
+
+};
+
+zone "praiadoamor.com.br" {
+    type master;
+    file "/etc/bind/db.praiadoamor.com.br";
+    allow-transfer{
+        127.0.0.1;
+    };
+
+};
+
+zone "camurupim.com.br" {
+    type master;
+    file "/etc/bind/db.camurupim.com.br";
+    allow-transfer{
+        127.0.0.1;
+    };
+
+};
+
+
+// Consider adding the 1918 zones here, if they are not used in your
+// organization
+//include "/etc/bind/zones.rfc1918";
+
