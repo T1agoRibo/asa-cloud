@@ -1,0 +1,45 @@
+services:
+  dns:
+    build: 
+      context: ./dns
+      dockerfile: Dockerfile
+    container_name: dns
+    ports:
+      - "53:53/udp"
+
+  proxy:
+    build: 
+      context: ./proxy
+      dockerfile: Dockerfile
+    container_name: proxy
+    ports:
+      - "80:80/tcp"
+    networks:
+      - tiago-network
+
+  webemail:
+    build:
+      context: ./webemail
+      dockerfile: Dockerfile
+    container_name: webemail
+    ports:
+    - "8080:8080/tcp"
+    networks:
+      - tiago-network
+  
+  mail:
+    build: 
+      context: ./mail
+      dockerfile: Dockerfile
+    container_name: mail
+    ports:
+      - "25:25/tcp"   # SEMP
+      - "587:587/tcp" # SMP Client
+      - "110:110/tcp" # POP3
+      - "143:143/tcp" # IMAP
+    networks:
+      - tiago-network
+
+networks:
+  tiago-network:
+    driver: bridge

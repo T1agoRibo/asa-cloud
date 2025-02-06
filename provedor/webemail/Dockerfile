@@ -1,5 +1,6 @@
-FROM jorgedlcruz/zimbra
+FROM nextcloud
 
-EXPOSE 25
-EXPOSE 993
-EXPOSE 110
+RUN echo "ServerName camurupim.com.br" >> /etc/apache2/apache2.conf
+
+
+EXPOSE 8080

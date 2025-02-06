@@ -1,5 +1,5 @@
 ;
-; BIND data file for asa.br zone
+;
 ;
 $TTL	604800
 @	IN	SOA	ns.camurupim.com.br. root.camurupim.com.br. (
@@ -11,6 +11,6 @@ $TTL	604800
 ;
 @		IN	NS	ns.
 @		IN	MX  10  mail.
-@		IN	A	127.0.0.1
-mail	IN	A	127.0.0.1
-www		IN	A	127.0.0.1
+@		IN	A	192.168.100.151
+mail	IN	A	192.168.100.151
+www		IN	A	192.168.100.151
