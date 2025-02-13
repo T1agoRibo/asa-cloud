@@ -10,6 +10,10 @@ services:
       MYSQL_DATABASE: asa1
       MYSQL_USER: tiago
       MYSQL_PASSWORD: tiago
+    volumes:
+      - db1_data:/var/lib/mysql
+    networks:
+      - tiago-network
   
   wordpress1:
     depends_on:
@@ -19,10 +23,87 @@ services:
       dockerfile: Dockerfile
     container_name: wp1
     ports:
-      - "80:80"
+      - "8080:80"
     restart: always
     environment:
-      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_HOST: db1:3306
       WORDPRESS_DB_USER: tiago
       WORDPRESS_DB_PASSWORD: tiago
       WORDPRESS_DB_NAME: asa1
+    volumes:
+      - wp1_data:/var/www/html
+    networks:
+      - tiago-network
+
+  db2:
+    build: 
+      context: ./web2/db
+      dockerfile: Dockerfile
+    container_name: db2
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: tiago
+      MYSQL_DATABASE: asa2
+      MYSQL_USER: tiago
+      MYSQL_PASSWORD: tiago
+    volumes:
+      - db2_data:/var/lib/mysql
+    networks:
+      - tiago-network
+  
+  wordpress2:
+    depends_on:
+      - db2
+    build:
+      context: ./web2/wp
+      dockerfile: Dockerfile
+    container_name: wp2
+    ports:
+      - "8081:80"
+    restart: always
+    environment:
+      WORDPRESS_DB_HOST: db2:3306
+      WORDPRESS_DB_USER: tiago
+      WORDPRESS_DB_PASSWORD: tiago
+      WORDPRESS_DB_NAME: asa2 
+    volumes:
+      - wp2_data:/var/www/html 
+    networks:
+      - tiago-network
+
+  proxy:
+    build: 
+      context: ./proxy
+      dockerfile: Dockerfile
+    container_name: proxy
+    ports:
+      - "80:80/tcp"
+      - "443:443/tcp"
+    depends_on:
+      - wordpress1
+    networks:
+      - tiago-network
+
+  dns:
+    build: 
+      context: /home/tiago/Downloads/asa-cloud/provedor/dns
+      dockerfile: Dockerfile
+    container_name: dns
+    ports:
+      - "53:53/udp"
+  ssh:
+    build: 
+      context: ./ssh
+      dockerfile: Dockerfile
+    container_name: ssh
+    ports:
+      - "22:22/tcp"
+volumes:
+  db1_data:  
+  wp1_data:  
+  db2_data:  
+  wp2_data:
+
+networks:
+  tiago-network:
+    driver: bridge

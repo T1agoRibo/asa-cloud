@@ -9,8 +9,9 @@ $TTL	604800
 			2419200		; Expire
 			 604800 )	; Negative Cache TTL
 ;
-@		IN	NS	ns
+@		IN	NS	ns.
 @		IN	MX  10  mail.
-@		IN	A	10.25.2.211
-mail	IN	A	10.25.2.211
-www		IN	A	10.25.2.211
+@		IN	A	192.168.100.151
+mail	IN	A	192.168.100.151
+www		IN	A	192.168.100.151
+site2	IN	A	192.168.100.151
