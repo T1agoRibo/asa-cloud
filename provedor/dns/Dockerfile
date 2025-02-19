@@ -5,7 +5,7 @@ RUN apt install bind9 dnsutils -y
 
 COPY named.conf.local /etc/bind
 
-COPY db.pirangi.com.br /etc/bind
+COPY db.praiadoforte.com.br /etc/bind
 COPY db.praiadoamor.com.br /etc/bind
 COPY db.camurupim.com.br /etc/bind
 

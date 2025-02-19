@@ -13,8 +13,8 @@ COPY main.cf /etc/postfix
 
 # Copiar arquivo de autenticacao do Dovecot
 COPY ./dovecot/10-auth.conf /etc/dovecot/conf.d
-#COPY ./dovecot/10-master.conf /etc/dovecot/conf.d
-#COPY ./dovecot/10-mail.conf /etc/dovecot/conf.d
+COPY ./dovecot/10-master.conf /etc/dovecot/conf.d
+COPY ./dovecot/10-mail.conf /etc/dovecot/conf.d
 
 
 RUN echo "camurupim.com.br" > /etc/mailname

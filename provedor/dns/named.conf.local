@@ -2,9 +2,9 @@
 // Do any local configuration here
 //
 
-zone "pirangi.com.br" {
+zone "praiadoforte.com.br" {
     type master;
-    file "/etc/bind/db.pirangi.com.br";
+    file "/etc/bind/db.praiadoforte.com.br";
     allow-transfer{
         127.0.0.1;
     };
