@@ -86,7 +86,7 @@ services:
 
   dns:
     build: 
-      context: C:/Users/20231014050043/asa-cloud/provedor/dns
+      context: ../provedor/dns
       dockerfile: Dockerfile
     container_name: dns
     ports:
